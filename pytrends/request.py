@@ -389,9 +389,10 @@ class TrendReq(object):
         result_dict = dict()
         for request_json in self.related_topics_widget_list:
             # setting the user
-            request_json['language'] = self.hl[:2]
-            request_json['userCountryCode'] = self.hl[-2:]
-            request_json['userConfig']['userType'] = "USER_TYPE_LEGIT_USER"
+            request_json['request']['language'] = self.hl[:2]
+            request_json['request']['userCountryCode'] = self.hl[-2:]
+            request_json['request']['userConfig'] = []
+            request_json['request']['userConfig']['userType'] = "USER_TYPE_LEGIT_USER"
 
             # ensure we know which keyword we are looking at rather than relying on order
             try:
@@ -407,7 +408,7 @@ class TrendReq(object):
             # parse the returned json
             req_json = self._get_data(
                 url=TrendReq.RELATED_QUERIES_URL,
-                method=TrendReq.GET_METHOD,
+                method=TrendReq.POST_METHOD,
                 trim_chars=5,
                 params=related_payload,
             )
