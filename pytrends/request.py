@@ -391,6 +391,7 @@ class TrendReq(object):
             # setting the user
             request_json['request']['language'] = self.hl[:2]
             request_json['request']['userCountryCode'] = self.hl[-2:]
+            # setting the user type
             request_json['request']['userConfig']['userType'] = "USER_TYPE_LEGIT_USER"
 
             # ensure we know which keyword we are looking at rather than relying on order
