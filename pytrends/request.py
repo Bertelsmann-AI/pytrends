@@ -138,9 +138,6 @@ class TrendReq(object):
                               cookies=self.cookies, **kwargs,
                               **self.requests_args)  # DO NOT USE retries or backoff_factor here
         else:
-            print(url)
-            print(self.cookies)
-            print(s)
             response = s.get(url, timeout=self.timeout, cookies=self.cookies,
                              **kwargs, **self.requests_args)  # DO NOT USE retries or backoff_factor here
         # check if the response contains json and throw an exception otherwise
@@ -391,6 +388,11 @@ class TrendReq(object):
         related_payload = dict()
         result_dict = dict()
         for request_json in self.related_topics_widget_list:
+            # setting the user
+            request_json['language'] = self.hl[:2]
+            request_json['userCountryCode'] = self.hl[-2:]
+            request_json['userConfig']['userType'] = "USER_TYPE_LEGIT_USER"
+
             # ensure we know which keyword we are looking at rather than relying on order
             try:
                 kw = request_json['request']['restriction'][
