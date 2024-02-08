@@ -138,6 +138,9 @@ class TrendReq(object):
                               cookies=self.cookies, **kwargs,
                               **self.requests_args)  # DO NOT USE retries or backoff_factor here
         else:
+            print(url)
+            print(self.cookies)
+            print(s)
             response = s.get(url, timeout=self.timeout, cookies=self.cookies,
                              **kwargs, **self.requests_args)  # DO NOT USE retries or backoff_factor here
         # check if the response contains json and throw an exception otherwise
