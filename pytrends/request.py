@@ -408,7 +408,7 @@ class TrendReq(object):
             # parse the returned json
             req_json = self._get_data(
                 url=TrendReq.RELATED_QUERIES_URL,
-                method=TrendReq.POST_METHOD,
+                method=TrendReq.GET_METHOD,
                 trim_chars=5,
                 params=related_payload,
             )
